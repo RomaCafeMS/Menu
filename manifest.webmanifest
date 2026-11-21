@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "مینووی ڕۆما کافێ",
+  "short_name": "ڕۆما",
+  "description": "مینووی ڕۆما کافێ: نرخ و کاڵاکان، هەمیشە نوێ",
+  "start_url": "./?src=app",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0c1735",
+  "theme_color": "#0c1735",
+  "lang": "ckb",
+  "dir": "rtl",
+  "categories": ["food", "lifestyle"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
