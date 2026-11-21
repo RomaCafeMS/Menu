@@ -582,9 +582,10 @@
             var tm = String(i.tiktok).match(/@([\w.]+)/);
             quick.push(tile("t-tt", "tt", "تیکتۆک", tm ? "@" + tm[1] : "بینینی ئەکاونت", safeUrl(i.tiktok), true, !!tm));
         }
-        if (i.address || safeUrl(i.map)) {
-            var mtag = safeUrl(i.map) ? h("span", { class: "dtag" }, icon("pin"), "نەخشە") : null;
-            rows.push(drow("d-map", "pin", "ناونیشان", i.address || "ناونیشان لەسەر نەخشە", mtag, safeUrl(i.map) || null));
+        var mapHref = safeUrl(i.map) || (i.address ? "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(((data.cafe || "") + " " + i.address).trim()) : "");
+        if (i.address || mapHref) {
+            var mtag = mapHref ? h("span", { class: "dtag map" }, icon("pin"), "Google Maps") : null;
+            rows.push(drow("d-map", "pin", "ناونیشان", i.address || "ناونیشان لەسەر نەخشە", mtag, mapHref || null));
         }
         if (i.hours) rows.push(drow("d-time", "clock", "کاتی دەوام", i.hours));
         if (i.wifi) {
@@ -604,8 +605,15 @@
         var info = (quick.length || rows.length) ? h("div", { class: "info-card" }, h("h4", null, icon("info"), "زانیاری و پەیوەندی"), quick.length ? h("div", { class: "quick" }, quick) : null, rows.length ? h("div", { class: "rows" }, rows) : null) : null;
 
         var btns = [];
-        if (!standalone) btns.push(h("button", { class: "ac-btn pri", type: "button", onclick: function () { sfx("tap"); doInstall(); } }, icon("download"), h("span", { text: "دابەزاندنی ئەپ" })));
+        if (!standalone) btns.push(h("button", { class: "ac-btn pri wide", type: "button", onclick: function () { sfx("tap"); doInstall(); } }, icon("download"), h("span", { text: "دابەزاندنی ئەپ" })));
         btns.push(h("button", { class: "ac-btn " + (standalone ? "pri" : "sec"), type: "button", onclick: shareMenu }, icon("share"), h("span", { text: "شێرکردنی مینوو" })));
+        var cpb = h("button", { class: "ac-btn sec sq", type: "button", "aria-label": "کۆپیکردنی بەستەر", title: "کۆپیکردنی بەستەر" }, icon("copy"));
+        cpb.addEventListener("click", function () {
+            copyText(location.origin + location.pathname, "بەستەری مینوو کۆپی کرا");
+            cpb.innerHTML = ""; cpb.classList.add("done"); cpb.appendChild(icon("check"));
+            setTimeout(function () { cpb.innerHTML = ""; cpb.classList.remove("done"); cpb.appendChild(icon("copy")); }, 1800);
+        });
+        btns.push(cpb);
         var app = h("div", { class: "app-card reveal" },
             h("div", { class: "ac-h" }, h("img", { src: "icon-192.png", alt: "" }), h("div", null, h("b", { text: "ئەپی مینووی ڕۆما" }), h("small", { text: standalone ? "هاوڕێکانت بە مینووەکە ئاشنا بکە" : "دایبەزێنە و لەگەڵ هاوڕێکانت شێری بکە" }))),
             h("div", { class: "ac-b" }, btns));
