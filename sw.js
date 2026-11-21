@@ -1,6 +1,6 @@
 /* Service Worker: دوای یەکەم کردنەوە، مینوو لە ئینتەرنێتی لاوازیش دەکرێتەوە */
 "use strict";
-var V = "rm-v3";
+var V = "rm-v4";
 var SHELL = ["./", "index.html", "app.css", "app.js", "theme.js", "icon.svg", "logo.svg", "icon-192.png", "icon-512.png", "manifest.webmanifest", "fonts/noto-sans-arabic-arabic-wght-normal.woff2", "fonts/noto-sans-arabic-latin-wght-normal.woff2"];
 
 self.addEventListener("install", function (e) {
