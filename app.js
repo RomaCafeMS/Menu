@@ -193,7 +193,7 @@
     function openSheet(it, cat) {
         track("view", it.n);
         var cur = data.currency || "";
-        var fb = heart(it); fb.classList.add("lg"); fb.appendChild(h("span", { text: "دڵخواز" }));
+        var fb = heart(it); fb.classList.add("lg"); fb.appendChild(h("span", { class: "l-off", text: "زیادکردن بۆ دڵخواز" })); fb.appendChild(h("span", { class: "l-on", text: "لە دڵخوازەکانە" }));
         var sb = h("button", { class: "sh-share", type: "button", onclick: function () { shareItem(it); } }); sb.appendChild(icon("share")); sb.appendChild(h("span", { text: "هاوبەشکردن" }));
         var x = h("button", { class: "sh-close", type: "button", "aria-label": "داخستن", onclick: function () { closeSheet(true); } }); x.appendChild(icon("x"));
         els.sheet.innerHTML = "";
